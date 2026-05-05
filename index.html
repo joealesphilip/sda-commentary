@@ -375,15 +375,12 @@ async function sendMessage() {
 }
 
 function fmtReply(t) {
-  let h = t
-    .replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>')
-    .replace(/Volume (\d+)/gi,'<span class="ref-tag">Vol $1</span>')
-    .replace(/
-
-/g,'</p><p>')
-    .replace(/
-/g,'<br>');
-  return '<p>'+h+'</p>';
+  var h = t
+    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+    .replace(/Volume (\d+)/gi, '<span class="ref-tag">Vol $1</span>')
+    .split('\n\n').join('</p><p>')
+    .split('\n').join('<br>');
+  return '<p>' + h + '</p>';
 }
 
 document.getElementById('chat-input').addEventListener('input', function(){
